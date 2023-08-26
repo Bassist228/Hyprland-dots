@@ -1,0 +1,6 @@
+#!/bin/bash
+
+input_file="input.webm"
+output_file="output.mp4"
+
+ffmpeg -i "$input_file" -c:v libx264 -c:a aac -strict experimental "$output_file"
