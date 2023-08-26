@@ -1,0 +1,11 @@
+#!/bin/bash
+dir=$HOME/Pictures/Wallpapers
+
+cd "$dir" || exit
+
+output=$(fd -tf . | grep -v "wal_sample"  | while read -r A ; do echo -en "$A\x00icon\x1f$dir/$A\n"; done | rofi -l 0 -i -dmenu -show-icons -window-title " " );
+[ "$output" ] || exit
+
+if [ -f "$dir/$output" ]; then
+    "$HOME/.config/hypr/scripts/set.sh" "$dir/$output"
+  fi
